@@ -68,3 +68,6 @@ Also check out another alternative library: [NTwain](http://www.nuget.org/packag
 
 ### Ricoh
    * Ricoh Aficio MP 161
+
+### Konika
+   * Bizhub c35

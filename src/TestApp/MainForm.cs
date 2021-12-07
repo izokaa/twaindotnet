@@ -40,6 +40,13 @@ namespace TestApp
             {
                 Enabled = true;
             };
+
+            scanSourceslist.Items.Clear();
+
+            foreach (var scanSource in _twain.SourceNames)
+            {
+                scanSourceslist.Items.Add(scanSource);
+            }
         }
 
         private void selectSource_Click(object sender, EventArgs e)
@@ -95,6 +102,59 @@ namespace TestApp
         private void diagnostics_Click(object sender, EventArgs e)
         {
             var diagnostics = new Diagnostics(new WinFormsWindowMessageHook(this));
+        }
+
+
+        private void selectScan_Click(object sender, EventArgs e)
+        {
+            
+            //scan from selected item from the list 
+            if (scanSourceslist.SelectedIndex != -1)
+            {
+                Enabled = false;
+
+                _settings = new ScanSettings();
+                _settings.UseDocumentFeeder = useAdfCheckBox.Checked;
+                _settings.ShowTwainUI = useUICheckBox.Checked;
+                _settings.ShowProgressIndicatorUI = showProgressIndicatorUICheckBox.Checked;
+                _settings.UseDuplex = useDuplexCheckBox.Checked;
+                _settings.Resolution =
+                    blackAndWhiteCheckBox.Checked
+                    ? ResolutionSettings.Fax : ResolutionSettings.ColourPhotocopier;
+                _settings.Area = !checkBoxArea.Checked ? null : AreaSettings;
+                _settings.ShouldTransferAllPages = true;
+
+                _settings.Rotation = new RotationSettings()
+                {
+                    AutomaticRotate = autoRotateCheckBox.Checked,
+                    AutomaticBorderDetection = autoDetectBorderCheckBox.Checked
+                };
+
+                try
+                {
+                    _twain.SelectSource(scanSourceslist.SelectedItem.ToString());
+                    _twain.StartScanning(_settings);
+                }
+                catch (TwainException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Enabled = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a source from the list before scaning");
+            }
+        }
+
+        private void refreshSource_Click(object sender, EventArgs e)
+        {
+            scanSourceslist.Items.Clear();
+            //get available drivers then push to  listbox
+            foreach (var scanSource in _twain.SourceNames)
+            {
+                scanSourceslist.Items.Add(scanSource);
+            }
         }
     }
 }

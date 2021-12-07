@@ -48,7 +48,12 @@
             this.autoRotateCheckBox = new System.Windows.Forms.CheckBox();
             this.autoDetectBorderCheckBox = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.selectScanButton = new System.Windows.Forms.Button();
+            this.scanSourceslist = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // selectSource
@@ -239,11 +244,52 @@
             this.label5.Size = new System.Drawing.Size(120, 2);
             this.label5.TabIndex = 19;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.selectScanButton);
+            this.groupBox2.Controls.Add(this.scanSourceslist);
+            this.groupBox2.Location = new System.Drawing.Point(623, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(341, 601);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Custom source";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(6, 305);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(329, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Refresh sources";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.refreshSource_Click);
+            // 
+            // selectScanButton
+            // 
+            this.selectScanButton.Location = new System.Drawing.Point(6, 272);
+            this.selectScanButton.Name = "selectScanButton";
+            this.selectScanButton.Size = new System.Drawing.Size(329, 23);
+            this.selectScanButton.TabIndex = 1;
+            this.selectScanButton.Text = "Scan from Selected source";
+            this.selectScanButton.UseVisualStyleBackColor = true;
+            this.selectScanButton.Click += new System.EventHandler(this.selectScan_Click);
+            // 
+            // scanSourceslist
+            // 
+            this.scanSourceslist.FormattingEnabled = true;
+            this.scanSourceslist.Location = new System.Drawing.Point(6, 15);
+            this.scanSourceslist.Name = "scanSourceslist";
+            this.scanSourceslist.Size = new System.Drawing.Size(329, 251);
+            this.scanSourceslist.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 625);
+            this.ClientSize = new System.Drawing.Size(973, 625);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.autoRotateCheckBox);
             this.Controls.Add(this.autoDetectBorderCheckBox);
@@ -268,6 +314,7 @@
             this.Name = "MainForm";
             this.Text = "Test App";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,6 +342,10 @@
         private System.Windows.Forms.CheckBox autoRotateCheckBox;
         private System.Windows.Forms.CheckBox autoDetectBorderCheckBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button selectScanButton;
+        private System.Windows.Forms.ListBox scanSourceslist;
     }
 }
 
